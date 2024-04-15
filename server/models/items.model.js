@@ -6,7 +6,7 @@ const ItemsSchema = mongoose.Schema({
                 minlength:[2,'Item name must be at least 2 characters long.']},
     section:{type:String,
             required:[true,'Grocery section is required.']},
-    description:{type:String},
+    notes:{type:String},
     alternative1:{type:String},
     alternative2:{type:String}
     }, {timestamps:true})

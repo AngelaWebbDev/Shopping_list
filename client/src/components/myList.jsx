@@ -13,6 +13,7 @@ const Mylist = (props) => {
         <table>
             <thead>
                 <tr>
+                    <th></th>
                     <th>Name</th>
                     <th>Section</th>
                     <th>Alt 1</th>
@@ -24,6 +25,7 @@ const Mylist = (props) => {
             {itemlist.sort((item1, item2) => (item1.section.toLowerCase() < item2.section.toLowerCase() ? -1 : ((item1.section.toLowerCase() > item2.section.toLowerCase()) ? 1 : 0))).map(item => { 
                 return (
                     <tr key={item._id}>
+                        <td><button>delete</button></td>
                         <td><p>{item.name}</p></td>
                         <td><p>{item.section}</p></td>
                         <td><p>{item.alternative1}</p></td>

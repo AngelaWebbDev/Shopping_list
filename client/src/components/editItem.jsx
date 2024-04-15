@@ -7,7 +7,7 @@ const Edititem = (props) => {
     const {id} = useParams();
     const [name, setName] = useState('')
     const [section, setSection] = useState('')
-    const [description, setDescription] = useState('')
+    const [notes, setNotes] = useState('')
     const [alternative1, setAlternative1] = useState('')
     const [alternative2, setAlternative2] = useState('')
     const [errors, setErrors] = useState([]);
@@ -18,7 +18,7 @@ const Edititem = (props) => {
             .then(res => {                
                 setName(res.data.name);
                 setSection(res.data.section);
-                setDescription(res.data.description);
+                setNotes(res.data.notes);
                 setAlternative1(res.data.alternative1);
                 setAlternative2(res.data.alternative2);
             })
@@ -31,7 +31,7 @@ const Edititem = (props) => {
         const updatedItem = {
             name,
             section,
-            description,
+            notes,
             alternative1,
             alternative2
         }
@@ -40,7 +40,7 @@ const Edititem = (props) => {
             .then(res => {
                     setName('');
                     setSection('');
-                    setDescription('');
+                    setNotes('');
                     setAlternative1('');
                     setAlternative2('');
                     navigate('/details/'+id)})
@@ -74,11 +74,11 @@ const Edititem = (props) => {
                     </div>
 
                     <div style={{ margin: '5px' }}>
-                        <label>Description:</label>
+                        <label>Notes:</label>
                         <input type='text'
-                            onChange={(e) => setDescription(e.target.value)}
-                            value={description} />
-                        {errors.description ? <p>{errors.description.message}</p> : null}
+                            onChange={(e) => setNotes(e.target.value)}
+                            value={notes} />
+                        {errors.notes ? <p>{errors.notes.message}</p> : null}
                     </div>
                     <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px' }}>Edit {name}</button>
                 </div>
