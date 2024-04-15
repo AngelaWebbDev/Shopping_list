@@ -1,0 +1,15 @@
+requestAnimationFrame('./config/mongoose.config');
+
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const port = 8000;
+
+require('./routes/shoppingList.routes')(app);
+
+app.use(cors())
+app.use(express.json());
+
+app.use(express.urlencoded({extended:true}));
+
+app.listen(port, ()=>console.log(`Listening on port ${port}`));
