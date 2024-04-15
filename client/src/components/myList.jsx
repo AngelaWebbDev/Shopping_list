@@ -1,7 +1,14 @@
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 const Mylist = (props) => {
     const {itemlist, setItemlist} = props
+
+    const deleteItem = (id, name) => {
+        axios.delete('http://localhost:8000/api/deleteItem/' + id)
+            .then(res => {console.log(`${name} was removed from the list.`);
+                            setItemlist(itemlist.filter(item => item._id != id));})
+            .catch(err => console.log('details deleteItem err: ', err))}
 
     return(
         <>
@@ -24,7 +31,7 @@ const Mylist = (props) => {
             {itemlist.sort((item1, item2) => (item1.section.toLowerCase() < item2.section.toLowerCase() ? -1 : ((item1.section.toLowerCase() > item2.section.toLowerCase()) ? 1 : 0))).map(item => { 
                 return (
                     <tr key={item._id}>
-                        <td><button>delete</button></td>
+                        <td><button onClick={e => deleteItem(item._id, item.name)}  style={{border:'1px solid blue', margin:'3px', padding:'5px', borderRadius:'2px'}}>delete</button></td>
                         <td><Link to={`/details/${item._id}`} >{item.name}</Link></td>
                         <td><p>{item.section}</p></td>
                         <td><p>{item.notes}</p></td>
