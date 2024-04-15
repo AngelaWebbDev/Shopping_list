@@ -40,9 +40,9 @@ const Details = (props) => {
                 <td style={{border:'none', textAlign:'left', padding:'10px'}}>{oneItem.section}</td>
             </tr>
             <tr style={{border:'none', margin:'10px'}}>
-                <th style={{border:'none', textAlign:'right', padding:'10px'}}>Notes:</th>
+                <th style={{border:'none', textAlign:'right', padding:'10px'}}>Description:</th>
                 <td></td>
-                <td style={{border:'none', textAlign:'left', padding:'10px'}}>{oneItem.notes}</td>
+                <td style={{border:'none', textAlign:'left', padding:'10px'}}>{oneItem.description}</td>
             </tr>
             <tr style={{border:'none'}}>
                 <th style={{border:'none', textAlign:'right', verticalAlign:'top', padding:'10px'}}>Alternatives:</th>
