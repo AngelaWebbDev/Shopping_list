@@ -1,0 +1,9 @@
+myLIst.jsx: default sort should be by type, then by item alphabetically
+
+add a note option for each item (purpose: 'min 50% yellow' or 'if not 3, then none')
+
+make edit possible from home page, not additional component
+
+shopping/warehouse background, black list background, white lettering,
+centered list, responsive font size, show item name, comments, checkbox/update btn ... it item
+is clicked on, alternatives show

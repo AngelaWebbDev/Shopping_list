@@ -1,15 +1,12 @@
-requestAnimationFrame('./config/mongoose.config');
+const express = require('express')
+const app = express()
+const cors = require('cors')
+const port = 8000
 
-const express = require('express');
-const app = express();
-const cors = require('cors');
-const port = 8000;
+app.use(cors({origin: 'http://localhost:5173'}))
+app.use(express.json(), express.urlencoded({extended:true}))
 
-require('./routes/shoppingList.routes')(app);
+require('./config/mongoose.config')
+require('./routes/items.routes')(app)
 
-app.use(cors())
-app.use(express.json());
-
-app.use(express.urlencoded({extended:true}));
-
-app.listen(port, ()=>console.log(`Listening on port ${port}`));
+app.listen(port, () => console.log(`Listening on port ${port}`))
