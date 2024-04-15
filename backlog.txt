@@ -6,8 +6,6 @@
 -----------------------------------------------------------------------------------------
 next
 -----------------------------------------------------------------------------------------
-change delete button on item list to a checkbox
-
 when item is clicked on itemlist, have undisplayed properties display
 
 allow updating from itemlist (change <p> to <input>)
