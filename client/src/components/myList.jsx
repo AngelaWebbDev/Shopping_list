@@ -14,10 +14,9 @@ const Mylist = (props) => {
             <thead>
                 <tr>
                     <th></th>
-                    <th>Name</th>
+                    <th>Item</th>
                     <th>Section</th>
-                    <th>Alt 1</th>
-                    <th>Alt 2</th>
+                    <th>Notes</th>
                     <th></th>
                 </tr>
             </thead>
@@ -26,13 +25,11 @@ const Mylist = (props) => {
                 return (
                     <tr key={item._id}>
                         <td><button>delete</button></td>
-                        <td><p>{item.name}</p></td>
+                        <td><Link to={`/details/${item._id}`} >{item.name}</Link></td>
                         <td><p>{item.section}</p></td>
-                        <td><p>{item.alternative1}</p></td>
-                        <td><p>{item.alternative2}</p></td>
+                        <td><p>{item.notes}</p></td>
                         <td>
-                            <Link to={`/details/${item._id}`} >details</Link> | 
-                            <Link to={`/edit/${item._id}`}> edit</Link>
+                            <Link to={`/edit/${item._id}`}>update</Link>
                         </td>
                     </tr>
                 )
