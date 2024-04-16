@@ -31,6 +31,7 @@ const Mylist = (props) => {
                     setAlternative1('');
                     setAlternative2('');
                     setErrors([]);
+                    document.getElementById('nameInput').focus();
                 })
                 .catch(err => {
                     console.log('additem newitem err: ', err);
@@ -41,7 +42,8 @@ const Mylist = (props) => {
     const deleteItem = (id, name) => {
         axios.delete('http://localhost:8000/api/deleteItem/' + id)
             .then(res => {console.log(`${name} was removed from the list.`);
-                            setItemlist(itemlist.filter(item => item._id != id));})
+                            setItemlist(itemlist.filter(item => item._id != id));
+                            document.getElementById('nameInput').focus();})
             .catch(err => console.log('details deleteItem err: ', err))}
 
     return(
@@ -53,46 +55,40 @@ const Mylist = (props) => {
         <p></p>
 
         {/* ***** add item ***** */}
-        <form onSubmit={addNewItem} style={{ display: 'flex', flexDirection:'column', justifyContent: 'space-evenly' }}>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-                <div>
-                    <input section='text'
-                        onChange={(e) => setName(e.target.value)} placeholder='item name'
-                        value={name} autoFocus/>
-                    {errors.name ? <p>{errors.name.message}</p> : null}
-                </div>
-                <div>
-                    <input type='text'
+        <form onSubmit={addNewItem} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+            <div style={{display:'flex', flexDirection:'column', justifyContent:'space-evenly'}}>
+                <input section='text' id='nameInput'
+                    onChange={(e) => setName(e.target.value)} placeholder='item name'
+                    value={name} autoFocus={true}/>
+                {errors.name ? <p>{errors.name.message}</p> : null}
+                <input type='text'
                         onChange={(e) => setSection(e.target.value)} placeholder='store section'
                         value={section} />
                     {errors.section ? <p>{errors.section.message}</p> : null}
-                </div>
-
-                <div style={{ margin: '5px' }}>
-                    <input type='text'
-                        onChange={(e) => setNotes(e.target.value)} placeholder='notes'
-                        value={notes} />
-                    {errors.notes ? <p>{errors.notes.message}</p> : null}
-                </div>
-            </div>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
-                <div style={{ margin: '5px' }}>
-                    <input type='text'
+                    <div>
+                        <input type='text'
                         onChange={(e) => setAlternative1(e.target.value)}
                         value={alternative1} placeholder='alternative choice #1'/>
                     {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
-                </div>
-
-                {alternative1.length>1 ? <div style={{ margin: '5px' }}>
-                                            <input type='text'
-                                                onChange={(e) => setAlternative2(e.target.value)}
-                                                value={alternative2} placeholder='alternative choice #2'/>
-                                            {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}
-                                        </div>
-                                        : null}
-                
-            <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px' }}>Add</button>
+                    </div>
+                    {alternative1.length>1 ? <div style={{ margin: '5px' }}>
+                                                <input type='text'
+                                                    onChange={(e) => setAlternative2(e.target.value)}
+                                                    value={alternative2} placeholder='alternative choice #2'/>
+                                                {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}
+                                            </div>
+                                            : null}
             </div>
+            <div>
+                <textarea rows='5' cols='20' maxlength='100'
+                    onChange={e => setNotes(e.target.value)} placeholder='notes                 (max 100 characters)'
+                    value={notes}  />
+                {errors.notes ? <p>{errors.notes.message}</p> : null}
+            </div>
+            <div style={{display:'flex', flexDirection:'column', justifyContent:'end', alignContent:'center'}}>
+                <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px', height:'fit-content'}}>Add</button>
+            </div>
+            
         </form>
 
         {/* ***** shopping list ***** */}
@@ -114,9 +110,10 @@ const Mylist = (props) => {
                                         <p style={{fontWeight:'bold', fontSize:'1.1rem', textDecoration:'underline'}}>{item.name}</p>
                                     
                                     <p>&#9758;&nbsp;{item.notes}</p>
-                                    {item.alternative1 && item.alternative2 ? <p>alt: {item.alternative1} or {item.alternative2}</p>
+                                    {item.alternative1 && item.alternative2 ? <p>sub: {item.alternative1} or {item.alternative2}</p>
                                                                         : <p></p>}
-                                    {item.alternative1 && !item.alternative2 ? <p>alt: {item.alternative1} </p> : <p></p>}
+                                    {item.alternative1 && !item.alternative2 ? <p>sub: {item.alternative1} </p> : <p></p>}
+                                    {!item.alternative1 && !item.alternative2 ? <p>no substitions</p> : null}
                                 </td>
                                 <td className='section'><p>{item.section}</p></td>
                                 <td className='checkAndEdit'>

@@ -3,6 +3,9 @@
   margin: 5px;
   text-align: center;
 }
+form{
+  width:90%;
+}
 p{
   margin-top:2px;
   margin-bottom:2px;
