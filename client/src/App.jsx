@@ -3,7 +3,6 @@ import './App.css'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Mylist from './components/myList'
 import axios from 'axios'
-import Additem from './components/addItem'
 import Details from './components/details'
 import Edititem from './components/editItem'
 
@@ -21,7 +20,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Mylist itemlist={itemlist} setItemlist={setItemlist}/>}/>
-          <Route path='additem' element={<Additem itemlist={itemlist} setItemlist={setItemlist}/>}/>
           <Route path='/details/:id' element={<Details  itemlist={itemlist} setItemlist={setItemlist}/>}/>
           <Route path='/edit/:id' element={<Edititem itemlist={itemlist} setItemlist={setItemlist}/>} />
         </Routes>

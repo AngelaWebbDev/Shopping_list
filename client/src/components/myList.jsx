@@ -46,9 +46,8 @@ const Mylist = (props) => {
 
     return(
         <>
-        <div style={{display:'flex', justifyContent:'space-between', alignContent:'center'}}>
+        <div style={{alignText:'center'}}>
             <h1>My Shopping List</h1>
-            <Link  to={`/additem`}>add an item</Link>
         </div>
         <p></p>
         <form onSubmit={addNewItem} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
