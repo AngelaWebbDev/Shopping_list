@@ -45,87 +45,90 @@ const Mylist = (props) => {
             .catch(err => console.log('details deleteItem err: ', err))}
 
     return(
-        <>
+
+        <div id='mylistpage'>
         <div style={{alignText:'center'}}>
             <h1>My Shopping List</h1>
         </div>
         <p></p>
-        <form onSubmit={addNewItem} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+
+        {/* ***** add item ***** */}
+        <form onSubmit={addNewItem} style={{ display: 'flex', flexDirection:'column', justifyContent: 'space-evenly' }}>
+            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
                 <div>
-                    <div style={{ margin: '5px' }}>
-                        <label>Name:</label>
-                        <input section='text'
-                            onChange={(e) => setName(e.target.value)}
-                            value={name} />
-                        {errors.name ? <p>{errors.name.message}</p> : null}
-                    </div>
-
-                    <div style={{ margin: '5px' }}>
-                        <label>Section:</label>
-                        <input type='text'
-                            onChange={(e) => setSection(e.target.value)}
-                            value={section} />
-                        {errors.section ? <p>{errors.section.message}</p> : null}
-                    </div>
-
-                    <div style={{ margin: '5px' }}>
-                        <label>Notes:</label>
-                        <input type='text'
-                            onChange={(e) => setNotes(e.target.value)}
-                            value={notes} />
-                        {errors.notes ? <p>{errors.notes.message}</p> : null}
-                    </div>
-                    <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px' }}>Add New Item</button>
+                    <input section='text'
+                        onChange={(e) => setName(e.target.value)} placeholder='item name'
+                        value={name} autoFocus/>
+                    {errors.name ? <p>{errors.name.message}</p> : null}
                 </div>
                 <div>
-                    <div style={{ margin: '5px' }}>
-                        <label>Alternative 1:</label>
-                        <input type='text'
-                            onChange={(e) => setAlternative1(e.target.value)}
-                            value={alternative1} />
-                        {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
-                    </div>
-
-                    <div style={{ margin: '5px' }}>
-                        <label>Alternative 2:</label>
-                        <input type='text'
-                            onChange={(e) => setAlternative2(e.target.value)}
-                            value={alternative2} />
-                        {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}
-                    </div>
+                    <input type='text'
+                        onChange={(e) => setSection(e.target.value)} placeholder='store section'
+                        value={section} />
+                    {errors.section ? <p>{errors.section.message}</p> : null}
                 </div>
-            </form>
 
+                <div style={{ margin: '5px' }}>
+                    <input type='text'
+                        onChange={(e) => setNotes(e.target.value)} placeholder='notes'
+                        value={notes} />
+                    {errors.notes ? <p>{errors.notes.message}</p> : null}
+                </div>
+            </div>
+            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-around'}}>
+                <div style={{ margin: '5px' }}>
+                    <input type='text'
+                        onChange={(e) => setAlternative1(e.target.value)}
+                        value={alternative1} placeholder='alternative choice #1'/>
+                    {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
+                </div>
+
+                {alternative1.length>1 ? <div style={{ margin: '5px' }}>
+                                            <input type='text'
+                                                onChange={(e) => setAlternative2(e.target.value)}
+                                                value={alternative2} placeholder='alternative choice #2'/>
+                                            {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}
+                                        </div>
+                                        : null}
+                
+            <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px' }}>Add</button>
+            </div>
+        </form>
+
+        {/* ***** shopping list ***** */}
         <table>
             <thead>
                 <tr>
-                    <th>&#x2714;</th>
-                    <th>Item</th>
-                    <th>Notes</th>
-                    <th>Alternatives</th>
+                    <th align='right'>&#x2714;</th>
+                    <th align='left' className='item'>Item</th>
                     <th>Section</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-            {itemlist.sort((item1, item2) => (item1.section.toLowerCase() < item2.section.toLowerCase() ? -1 : ((item1.section.toLowerCase() > item2.section.toLowerCase()) ? 1 : 0))).map(item => { 
-                return (
-                    <tr key={item._id}>
-                        <td><input type='checkbox'  onChange={e => deleteItem(item._id, item.name)}  style={{border:'1px solid blue', margin:'3px', padding:'5px', borderRadius:'2px'}}/></td>
-                        <td><Link to={`/details/${item._id}`} >{item.name}</Link></td>
-                        <td><p>{item.notes}</p></td>
-                        {item.alternative1 || item.alternative2 ? <td>{item.alternative1} {item.alternative2}</td>
-                                                                : <td></td>}
-                        <td><p>{item.section}</p></td>
-                        <td>
-                            <Link to={`/edit/${item._id}`}>&#128393;</Link>
-                        </td>
-                    </tr>
-                )
-            })}
+                {itemlist.sort((item1, item2) => (item1.section.toLowerCase() < item2.section.toLowerCase() ? -1 : ((item1.section.toLowerCase() > item2.section.toLowerCase()) ? 1 : 0))).map(item => { 
+                        return (
+                            <tr key={item._id}>
+                                <td align='right' valign='top' className='checkAndEdit' id='check'><input type='checkbox'  onChange={e => deleteItem(item._id, item.name)}/></td>
+                                <td className='item' align='left'>
+                                        <p style={{fontWeight:'bold', fontSize:'1.1rem', textDecoration:'underline'}}>{item.name}</p>
+                                    
+                                    <p>&#9758;&nbsp;{item.notes}</p>
+                                    {item.alternative1 && item.alternative2 ? <p>alt: {item.alternative1} or {item.alternative2}</p>
+                                                                        : <p></p>}
+                                    {item.alternative1 && !item.alternative2 ? <p>alt: {item.alternative1} </p> : <p></p>}
+                                </td>
+                                <td className='section'><p>{item.section}</p></td>
+                                <td className='checkAndEdit'>
+                                    <Link to={`/edit/${item._id}`}>&#128393;</Link>
+                                </td>
+                            </tr>
+                        )
+                            
+                })}
             </tbody>
         </table>
-        </>
+        </div>
     )
 }
 export default Mylist
