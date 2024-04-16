@@ -6,9 +6,10 @@
 -----------------------------------------------------------------------------------------
 next
 -----------------------------------------------------------------------------------------
-when item is clicked on itemlist, have undisplayed properties display
+make adding easy from mylist - input areas should be there, with an add button, then repopulate after an 
+item is added
 
-allow updating from itemlist (change <p> to <input>)
+allow updating from itemlist (change <p> to <input>, but make it look like <p>)
 
 default sort for item list is by section, with dark line between sections (row with all dark backgrounds as top row?)
 
