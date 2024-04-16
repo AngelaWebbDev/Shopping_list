@@ -40,7 +40,7 @@ const Mylist = (props) => {
                                                                 : <td></td>}
                         <td><p>{item.section}</p></td>
                         <td>
-                            <Link to={`/edit/${item._id}`}>update</Link>
+                            <Link to={`/edit/${item._id}`}>&#128393;</Link>
                         </td>
                     </tr>
                     </>
