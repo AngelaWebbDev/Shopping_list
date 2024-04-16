@@ -3,8 +3,41 @@
   margin: 5px;
   text-align: center;
 }
+p{
+  margin-top:2px;
+  margin-bottom:2px;
+}
 table, tr{
     border: 1px solid;
     border-collapse: collapse;
-    width:100%;
+}
+table{
+  width:90%;
+}
+td{
+  padding:0 1%;
+  word-wrap:normal;
+}
+form{
+  margin-bottom: 3%;
+}
+#mylistpage{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+}
+.checkAndEdit{
+  width:10%;
+}
+#check{
+  padding:2% 0 0 0;
+}
+.item{
+  width:60%;
+  justify-content: left;
+  padding-left: 3%;
+}
+.section{
+  width:20%;
+  align-content:left;
 }
