@@ -6,6 +6,8 @@
 -----------------------------------------------------------------------------------------
 next
 -----------------------------------------------------------------------------------------
+edititem tr on itemlist.jsx needs a unique key
+
 fix styling of edit page
 
 edit page, after save, redirects to '/', but does not update the table
