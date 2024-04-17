@@ -95,7 +95,9 @@ td{
   align-items: center;
   padding:0;
 }
-
+#EditItemComponentArea{
+  background-color: rgba(2,54,2);
+}
 /**********************************************************
                                             CLASSES
 **********************************************************/

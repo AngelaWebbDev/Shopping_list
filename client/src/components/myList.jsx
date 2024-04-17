@@ -9,7 +9,8 @@ const Mylist = (props) => {
     const [notes, setNotes] = useState('')
     const [alternative1, setAlternative1] = useState('')
     const [alternative2, setAlternative2] = useState('')
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState([])
+    const [showEditItem, setshowEditItem] = useState(true)
 
     const addNewItem = (e) => {
         e.preventDefault();
@@ -37,6 +38,11 @@ const Mylist = (props) => {
                     console.log('additem newitem err: ', err);
                     setErrors(err.response.data.errors);            })
         
+    }
+
+    const showEditItemComponent = (e) => {
+        if(showEditItem == false){setshowEditItem(true)}
+        else{setshowEditItem(false)}
     }
 
     const deleteItem = (id, name) => {
@@ -110,7 +116,8 @@ const Mylist = (props) => {
                             ? -1 
                             : ((item1.section.toLowerCase() > item2.section.toLowerCase()) ? 1 : 0))).map(item => { 
                         return (
-                            <tr key={item._id}>
+                            <>
+                            <tr  key={item._id}>
                                 <td align='right' 
                                     valign='top' 
                                     className='checkAndEdit' 
@@ -137,6 +144,14 @@ const Mylist = (props) => {
                                     <Link to={`/edit/${item._id}`} id='edit'>&#128393;</Link>
                                 </td>
                             </tr>
+                            {showEditItem
+                                ?   <tr id='EditItemComponentArea'>
+                                        <td colSpan='4'>
+                                            <p>Show EditItem is true</p>
+                                        </td>
+                                    </tr>
+                                : null}
+                            </>
                         )
                     })}
                 </tbody>
