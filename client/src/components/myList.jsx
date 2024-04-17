@@ -90,7 +90,7 @@ const Mylist = (props) => {
                 <div>
                     <textarea rows='5'
                                 cols='20' 
-                                maxlength='100'
+                                maxLength='100'
                                 onChange={e => setNotes(e.target.value)} 
                                 placeholder='notes                 (max 100 characters)'
                                 value={notes}  />
