@@ -80,7 +80,8 @@ const Edititem = (props) => {
                             value={notes} />
                         {errors.notes ? <p>{errors.notes.message}</p> : null}
                     </div>
-                    <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px' }}>Edit {name}</button>
+                    <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px' }}>Save</button>
+                    {/* add link to cancel (returns to itemlist.jsx) */}
                 </div>
                 <div>
                     <div style={{ margin: '5px' }}>
