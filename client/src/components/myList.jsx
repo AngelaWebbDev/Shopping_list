@@ -107,11 +107,11 @@ const Mylist = (props) => {
                             <tr key={item._id}>
                                 <td align='right' valign='top' className='checkAndEdit' id='check'><input type='checkbox'  onChange={e => deleteItem(item._id, item.name)}/></td>
                                 <td className='item' align='left'>
-                                        <p style={{fontWeight:'bold', fontSize:'1.1rem', textDecoration:'underline'}}>{item.name}</p>
-                                    
-                                    <p>&#9758;&nbsp;{item.notes}</p>
+                                    <p style={{fontWeight:'bold', fontSize:'1.1rem', textDecoration:'underline'}}>{item.name}</p>
+                                
+                                    <p style={{wordWrap:'normal'}}>&#9758;&nbsp;{item.notes}</p>
                                     {item.alternative1 && item.alternative2 ? <p>sub: {item.alternative1} or {item.alternative2}</p>
-                                                                        : <p></p>}
+                                                                            : <p></p>}
                                     {item.alternative1 && !item.alternative2 ? <p>sub: {item.alternative1} </p> : <p></p>}
                                     {!item.alternative1 && !item.alternative2 ? <p>no substitions</p> : null}
                                 </td>
