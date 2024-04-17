@@ -43,7 +43,7 @@ const Edititem = (props) => {
                     setNotes('');
                     setAlternative1('');
                     setAlternative2('');
-                    navigate('/details/'+id)})
+                    navigate('/')})
             .catch(err => {console.log('updateitem updateOneById err: ', err);
                             setErrors(err.response.data.errors)})
     }
