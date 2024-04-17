@@ -3,6 +3,10 @@
   margin: 5px;
   text-align: center;
 }
+body{
+  background-image: url("/src/assets/pexels-element-digital-1470171.jpg");
+  background-size: cover;
+}
 form{
   width:90%;
 }
@@ -16,6 +20,8 @@ table, tr{
 }
 table{
   width:90%;
+  width:fixed;
+  background-color: rgba(0,0,0, 0.8);
 }
 td{
   padding:0 1%;
@@ -28,19 +34,24 @@ form{
   display:flex;
   flex-direction:column;
   align-items: center;
+  padding:0;
 }
 .checkAndEdit{
   width:10%;
+  max-width:10%;
 }
 #check{
   padding:2% 0 0 0;
 }
 .item{
   width:60%;
+  max-width:60%;
   justify-content: left;
   padding-left: 3%;
+  word-wrap: normal;
 }
 .section{
   width:20%;
+  max-width: 20%;
   align-content:left;
 }
