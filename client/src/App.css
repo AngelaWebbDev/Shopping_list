@@ -70,6 +70,13 @@ td{
 #check{
   padding:2% 0 0 0;
 }
+#edit{
+  font-size: 1.25rem;
+  color:white;
+}
+#edit:hover{
+  color:blue;
+}
 #inputLeft{
   display:flex;
   flex-direction:column;

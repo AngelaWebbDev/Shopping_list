@@ -134,7 +134,7 @@ const Mylist = (props) => {
                                 </td>
                                 <td className='section'><p>{item.section}</p></td>
                                 <td className='checkAndEdit'>
-                                    <Link to={`/edit/${item._id}`}>&#128393;</Link>
+                                    <Link to={`/edit/${item._id}`} id='edit'>&#128393;</Link>
                                 </td>
                             </tr>
                         )
