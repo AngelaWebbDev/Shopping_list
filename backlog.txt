@@ -6,7 +6,9 @@
 -----------------------------------------------------------------------------------------
 next
 -----------------------------------------------------------------------------------------
-fix styling of addItem in mylist.jsx
+fix styling of edit page
+
+edit page, after save, redirects to '/', but does not update the table
 
 allow updating from itemlist (onclick, have update component popup?)
 
