@@ -24,10 +24,8 @@ button{
 }
 h1{
   color:whitesmoke;
-  /* text-shadow: 1px 1px 2px lightgray; */
   background-color: rgba(2, 54, 2, 0.8);
   padding: 2%;
-  /* border-radius: 10px; */
   font-weight: 500;
   margin: 0;
   width: 86%;
@@ -70,16 +68,9 @@ thead{
 /**********************************************************
                                             IDs
 **********************************************************/
-/* #addButton{
-  display:flex;
-  flex-direction:column; justify-content:end;
-  align-content:center;
-} */
 #addItemForm{
   background-color: rgba(2,54,2,0.8);
   padding: 2% 0;
-  width:80%;
-  /* border-radius: 10px; */
   display: flex; 
   justify-content:space-evenly;
   margin-bottom:5px;
