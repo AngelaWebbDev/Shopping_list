@@ -20,13 +20,17 @@ button{
   background-color: rgb(74, 73, 73);border: 1px solid black;
   padding: 5px;
   height:fit-content;
+  width:fit-content;
 }
 h1{
-  color:black;
-  text-shadow: 1px 1px 2px lightgray;
-  background-color: rgba(2, 72, 2,0.95);
-  padding:2%;
-  border-radius: 10px;
+  color:whitesmoke;
+  /* text-shadow: 1px 1px 2px lightgray; */
+  background-color: rgba(2, 54, 2, 0.8);
+  padding: 2%;
+  /* border-radius: 10px; */
+  font-weight: 500;
+  margin: 0;
+  width: 86%;
 }
 h3{
   white-space: nowrap;
@@ -37,6 +41,9 @@ input, textarea{
   padding:3%;
   margin:2%;
   border-radius: 10px;
+  border:none;
+  width:100%;
+  height:fit-content;
 }
 p{
   margin-top:2px;
@@ -56,22 +63,27 @@ td{
   padding:0 1%;
   word-wrap:normal;
 }
+thead{
+  border-bottom:3px rgb(19, 54, 1) solid;
+}
 
 /**********************************************************
                                             IDs
 **********************************************************/
-#addButton{
+/* #addButton{
   display:flex;
   flex-direction:column; justify-content:end;
   align-content:center;
-}
+} */
 #addItemForm{
   background-color: rgba(2,54,2,0.8);
   padding: 2% 0;
-  width:90%;
-  border-radius: 10px;
+  width:80%;
+  /* border-radius: 10px; */
   display: flex; 
   justify-content:space-evenly;
+  margin-bottom:5px;
+  border:2px black solid;
 }
 #check{
   padding:2% 0 0 0;
@@ -120,6 +132,11 @@ td{
 #itemNotes{
   word-wrap:normal;
 }
+#mylist_alt2input{
+  width:100%; 
+  display:flex;
+  justify-content:space-around;
+}
 #mylistpage{
   display:flex;
   flex-direction:column;
@@ -129,6 +146,20 @@ td{
 /**********************************************************
                                             CLASSES
 **********************************************************/
+.addItemArea{
+  margin:1px;
+  justify-content: space-around;
+  width:80%;
+  display:flex;
+  justify-content: center;
+}
+.addItemHalf{
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  /* padding:0 1%; */
+  align-items: center;
+}
 .checkAndEdit{
   width:10%;
   max-width:10%;
