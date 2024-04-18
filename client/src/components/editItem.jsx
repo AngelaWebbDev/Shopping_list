@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const Edititem = () => {
-    // const { id } = props
     const {id} = useParams()
     const [name, setName] = useState('')
     const [section, setSection] = useState('')
@@ -47,7 +46,9 @@ const Edititem = () => {
             <div id='editTitle'>
                 <h3>Edit {name}</h3>
             </div>
+
             <form onSubmit={edititem} id='editForm'>
+                {/* name */}
                 <div className='editInputItem'>
                     <label>Name: </label>
                     <input type='text'
@@ -56,9 +57,9 @@ const Edititem = () => {
                         autoFocus={true} />
                     {errors.name ? <p>{errors.name.message}</p> : null}<br/>
                 </div>
+
+                {/* section */}
                 <div className='editInputItem'>
-                    
-                    
                     <label>Section: </label>
                     <input type='text'
                         onChange={(e) => setSection(e.target.value)}
@@ -66,6 +67,7 @@ const Edititem = () => {
                     {errors.section ? <p>{errors.section.message}</p> : null}
                 </div>
 
+                {/* notes */}
                 <div className='editInputItem'>
                     <label>Notes: </label>
                     <textarea rows='5'
@@ -75,7 +77,8 @@ const Edititem = () => {
                                 value={notes}  />
                     {errors.notes ? <p>{errors.notes.message}</p> : null}
                 </div>
-                    
+                
+                {/* alternative 1 */}
                 <div className='editInputItem'>
                     <label>Alternative 1: </label>
                     <input type='text'
@@ -83,7 +86,8 @@ const Edititem = () => {
                         value={alternative1} />
                     {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
                 </div>
-                    
+                
+                {/* alternative 2 */}
                 {alternative1.length>1
                     ?   <div className='editInputItem'>
                             <label>Alternative 2: </label>
@@ -94,11 +98,11 @@ const Edititem = () => {
                         </div>
                     : null}
 
-                    <div id='editButtons' >
-                        <button>Save</button>
-                        {/* add link to cancel (returns to itemlist.jsx) */}
-                    </div>
-                
+                {/* edit button*/}
+                <div id='editButtons' >
+                    <button>Save</button>
+                    {/* add link to cancel (returns to itemlist.jsx) */}
+                </div>
             </form>
         </div>
     )

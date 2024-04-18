@@ -3,7 +3,6 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
 const Mylist = () => {
-
     const [itemlist, setItemlist] = useState([])
     const [name, setName] = useState('')
     const [section, setSection] = useState('')
@@ -13,7 +12,6 @@ const Mylist = () => {
     const [errors, setErrors] = useState([])
     const navigate = useNavigate()
 
-    
     useEffect(() => {
         axios.get('http://localhost:8000/api/getAll')
             .then(res => { setItemlist(res.data) })
@@ -23,29 +21,28 @@ const Mylist = () => {
     const addNewItem = (e) => {
         e.preventDefault();
             
-            const newItem = {
-                name,
-                section,
-                notes,
-                alternative1,
-                alternative2
-            }
+        const newItem = {
+            name,
+            section,
+            notes,
+            alternative1,
+            alternative2
+        }
     
-            axios.post('http://localhost:8000/api/newitem', newItem)
-                .then(res => {
-                    setItemlist([...itemlist, res.data]);
-                    setName('');
-                    setSection('');
-                    setNotes('');
-                    setAlternative1('');
-                    setAlternative2('')
-                    setErrors([]);
-                    document.getElementById('nameInput').focus();
-                })
-                .catch(err => {
-                    console.log('additem newitem err: ', err);
-                    setErrors(err.response.data.errors);            })
-        
+        axios.post('http://localhost:8000/api/newitem', newItem)
+            .then(res => {
+                setItemlist([...itemlist, res.data]);
+                setName('');
+                setSection('');
+                setNotes('');
+                setAlternative1('');
+                setAlternative2('')
+                setErrors([]);
+                document.getElementById('nameInput').focus();
+            })
+            .catch(err => {
+                console.log('additem newitem err: ', err);
+                setErrors(err.response.data.errors);})
     }
 
     const deleteItem = (id, name) => {
@@ -62,13 +59,13 @@ const Mylist = () => {
     }
 
     return(
-
         <div id='mylistpage'>
             <h1>My List</h1>
 
             {/* ***** add item ***** */}
             <form onSubmit={addNewItem} id='addItemForm'>
-                <div id='inputLeft'>
+                <div {/* left side */}>
+                    {/* name */}
                     <input section='text' 
                             id='nameInput'
                             onChange={(e) => setName(e.target.value)} 
@@ -76,11 +73,15 @@ const Mylist = () => {
                             value={name}
                             autoFocus={true}/>
                     {errors.name ? <p>{errors.name.message}</p> : null}
+                    
+                    {/* section */}
                     <input type='text'
                             onChange={(e) => setSection(e.target.value)} 
                             placeholder='store section'
                             value={section} />
                     {errors.section ? <p>{errors.section.message}</p> : null}
+                    
+                    {/* alternative 1 */}
                     <div>
                         <input type='text'
                                 onChange={(e) => setAlternative1(e.target.value)}
@@ -88,6 +89,8 @@ const Mylist = () => {
                                 placeholder='alternative choice #1'/>
                         {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
                     </div>
+
+                    {/* alternative 2 */}
                     {alternative1.length>1 ? <div>
                                                 <input type='text'
                                                     onChange={(e) => setAlternative2(e.target.value)}
@@ -96,7 +99,8 @@ const Mylist = () => {
                                             </div>
                                             : null}
                 </div>
-                <div>
+
+                <div {/* right side, only notes */}>
                     <textarea rows='5'
                                 cols='20' 
                                 maxLength='100'
@@ -105,6 +109,7 @@ const Mylist = () => {
                                 value={notes}  />
                     {errors.notes ? <p>{errors.notes.message}</p> : null}
                 </div>
+
                 <div id='addButton'>
                     <button>Add</button>
                 </div>
@@ -117,7 +122,7 @@ const Mylist = () => {
                         <th align='right'>&#x2714;</th>
                         <th align='left' className='item'>Item</th>
                         <th>Section</th>
-                        <th></th>
+                        <th>{/* column for buttons */}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -127,17 +132,21 @@ const Mylist = () => {
                         return (
                             <>
                             <tr  key={item._id}>
+                                {/* checkbox to delete item */}
                                 <td align='right' 
                                     valign='top' 
                                     className='checkAndEdit' 
                                     id='check'>
                                     <input type='checkbox'  onChange={e => deleteItem(item._id, item.name)}/>
                                 </td>
+
+                                {/* name, notes, & alternatives */}
                                 <td className='item' 
                                     align='left'>
                                     <p id='itemName'>{item.name}</p>
                                 
                                     <p id='itemNotes'>&#9758;&nbsp;{item.notes}</p>
+                                    
                                     {item.alternative1 && item.alternative2 
                                         ? <p>sub: {item.alternative1} or {item.alternative2}</p>
                                         : <p></p>}
@@ -148,13 +157,12 @@ const Mylist = () => {
                                         ? <p>no substitions</p> 
                                         : null}
                                 </td>
+
+                                {/* section */}
                                 <td className='section'><p>{item.section}</p></td>
-                                <td>
-                                    <button onClick={() => goToEdit(item._id)}>&#128393;</button>
-                                </td>
-                                {/* <td className='checkAndEdit'>
-                                    <Link to={`/edit/${item._id}`} id='edit'>&#128393;</Link>
-                                </td> */}
+                                
+                                {/* edit button*/}
+                                <td><button onClick={() => goToEdit(item._id)}>&#128393;</button></td>
                             </tr>
                             </>
                         )
