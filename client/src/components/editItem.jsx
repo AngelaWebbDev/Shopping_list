@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const Edititem = () => {
     const {id} = useParams()
+    const [oldName, setOldName] = useState('')
     const [name, setName] = useState('')
     const [section, setSection] = useState('')
     const [notes, setNotes] = useState('')
@@ -12,9 +13,11 @@ const Edititem = () => {
     const [errors, setErrors] = useState([]);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         axios.get('http://localhost:8000/api/itemdetails/' + id)
-            .then(res => {                
+            .then(res => {
+                setOldName(res.data.name);                
                 setName(res.data.name);
                 setSection(res.data.section);
                 setNotes(res.data.notes);
@@ -44,15 +47,16 @@ const Edititem = () => {
     return (
         <div id='editItemPage'>
             <div id='editTitle'>
-                <h3>Edit {name}</h3>
+                <h3>Edit {oldName}</h3>
             </div>
             <Link to='/' className='lookLikeBtn'>Go Back</Link>
 
             <form onSubmit={edititem} id='editForm'>
                 {/* name */}
                 <div className='editInputItem'>
-                    <label>Name: </label>
-                    <input type='text'
+                    <label className='editInputLabel'>Name: </label>
+                    <input className='editInputContent'
+                        type='text'
                         onChange={(e) => setName(e.target.value)}
                         value={name}
                         autoFocus={true} />
@@ -61,8 +65,9 @@ const Edititem = () => {
 
                 {/* section */}
                 <div className='editInputItem'>
-                    <label>Section: </label>
-                    <input type='text'
+                    <label className='editInputLabel'>Section: </label>
+                    <input className='editInputContent' 
+                        type='text'
                         onChange={(e) => setSection(e.target.value)}
                         value={section} /><br/>
                     {errors.section ? <p>{errors.section.message}</p> : null}
@@ -70,9 +75,10 @@ const Edititem = () => {
 
                 {/* notes */}
                 <div className='editInputItem'>
-                    <label>Notes: </label>
-                    <textarea rows='5'
-                                cols='20' 
+                    <label className='editInputLabel'>Notes: </label>
+                    <textarea  className='editInputContent'
+                                rows='5'
+                                // cols='20' 
                                 maxLength='100'
                                 onChange={e => setNotes(e.target.value)} 
                                 value={notes}  />
@@ -81,8 +87,9 @@ const Edititem = () => {
                 
                 {/* alternative 1 */}
                 <div className='editInputItem'>
-                    <label>Alternative 1: </label>
+                    <label className='editInputLabel'>Alt 1: </label>
                     <input type='text'
+                        className='editInputContent'
                         onChange={(e) => setAlternative1(e.target.value)}
                         value={alternative1} />
                     {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
@@ -91,8 +98,8 @@ const Edititem = () => {
                 {/* alternative 2 */}
                 {alternative1.length>1
                     ?   <div className='editInputItem'>
-                            <label>Alternative 2: </label>
-                            <input type='text'
+                            <label className='editInputLabel'>Alt 2: </label>
+                            <input className='editInputContent' type='text'
                                 onChange={(e) => setAlternative2(e.target.value)}
                                 value={alternative2} />
                             {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}

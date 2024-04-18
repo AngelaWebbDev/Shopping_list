@@ -43,6 +43,12 @@ input, textarea{
   width:100%;
   height:fit-content;
 }
+input[type=checkbox]{
+  opacity: 0;
+}
+input[type=checkbox]:hover{
+  cursor: pointer;
+}
 p{
   margin-top:2px;
   margin-bottom:2px;
@@ -87,6 +93,10 @@ thead{
 #edit:hover{
   color:blue;
 }
+#editBtn{
+  border:none;
+  background-color: rgba(3, 49, 3, 0);
+}
 #editButtons{
   display:flex;
   justify-content: space-around;
@@ -94,7 +104,7 @@ thead{
 }
 #editForm{
   margin: 7px;
-  padding:2px 7px 2px 2px;
+  /* padding:2px; */
   flex:2;
   display:inline-block;
   text-align:left;
@@ -135,6 +145,17 @@ thead{
   align-items: center;
   padding:0;
 }
+#whiteCheckbox{
+  height:15px;
+  width:15px;
+  background-color: whitesmoke;
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#whiteCheckbox:hover{
+  cursor: pointer;
+}
 /**********************************************************
                                             CLASSES
 **********************************************************/
@@ -159,8 +180,16 @@ thead{
 .editInputItem{
   display:flex;
   white-space: nowrap;
-  width:max-content;
+  width:100%;
   align-items: center;
+}
+.editInputLabel{
+  width:30%;
+  text-align: right;
+}
+.editInputContent{
+  width:70%;
+  padding-left: 3%;
 }
 .item{
   width:60%;

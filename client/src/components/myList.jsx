@@ -62,7 +62,7 @@ const Mylist = () => {
         <div id='mylistpage'>
 
             {/* ***** add item ***** */}
-            <form onSubmit={addNewItem} id='addItemForm'>
+            <form onSubmit={addNewItem} id='addItemForm' autoComplete='off'>
                 <div className='addItemHalf'> {/* left side */}
                     {/* name */}
                     <input section='text' 
@@ -136,7 +136,9 @@ const Mylist = () => {
                                     valign='top' 
                                     className='checkAndEdit' 
                                     id='check'>
-                                    <input type='checkbox'  onChange={e => deleteItem(item._id, item.name)}/>
+                                    <div id='whiteCheckbox'>
+                                        <input type='checkbox' onChange={e => deleteItem(item._id, item.name)}/>
+                                    </div>
                                 </td>
 
                                 {/* name, notes, & alternatives */}
@@ -161,7 +163,7 @@ const Mylist = () => {
                                 <td className='section'><p>{item.section}</p></td>
                                 
                                 {/* edit button*/}
-                                <td><button onClick={() => goToEdit(item._id)}>&#128393;</button></td>
+                                <td><button id='editBtn' onClick={() => goToEdit(item._id)}>&#128393;</button></td>
                             </tr>
                             </>
                         )
