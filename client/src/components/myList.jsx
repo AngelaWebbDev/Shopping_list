@@ -60,14 +60,14 @@ const Mylist = () => {
 
     return(
         <div id='mylistpage'>
-            <h1>My List</h1>
 
             {/* ***** add item ***** */}
             <form onSubmit={addNewItem} id='addItemForm'>
-                <div {/* left side */}>
+                <div class='addItemHalf'> {/* left side */}
                     {/* name */}
                     <input section='text' 
                             id='nameInput'
+                            className='addItemArea'
                             onChange={(e) => setName(e.target.value)} 
                             placeholder='item name'
                             value={name}
@@ -76,23 +76,22 @@ const Mylist = () => {
                     
                     {/* section */}
                     <input type='text'
+                            className='addItemArea'
                             onChange={(e) => setSection(e.target.value)} 
                             placeholder='store section'
                             value={section} />
                     {errors.section ? <p>{errors.section.message}</p> : null}
                     
                     {/* alternative 1 */}
-                    <div>
-                        <input type='text'
-                                onChange={(e) => setAlternative1(e.target.value)}
-                                value={alternative1} 
-                                placeholder='alternative choice #1'/>
-                        {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
-                    </div>
+                    <input type='text' className='addItemArea'
+                            onChange={(e) => setAlternative1(e.target.value)}
+                            value={alternative1} 
+                            placeholder='alternative choice #1'/>
+                    {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
 
                     {/* alternative 2 */}
-                    {alternative1.length>1 ? <div>
-                                                <input type='text'
+                    {alternative1.length>1 ? <div id='mylist_alt2input'>
+                                                <input type='text' className='addItemArea'
                                                     onChange={(e) => setAlternative2(e.target.value)}
                                                     value={alternative2} placeholder='alternative choice #2'/>
                                                 {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}
@@ -100,22 +99,22 @@ const Mylist = () => {
                                             : null}
                 </div>
 
-                <div {/* right side, only notes */}>
+                <div className='addItemHalf'> {/* right side, only notes */}
                     <textarea rows='5'
                                 cols='20' 
                                 maxLength='100'
+                                className='addItemArea'
                                 onChange={e => setNotes(e.target.value)} 
                                 placeholder='notes                 (max 100 characters)'
                                 value={notes}  />
-                    {errors.notes ? <p>{errors.notes.message}</p> : null}
-                </div>
-
-                <div id='addButton'>
+                        {errors.notes ? <p>{errors.notes.message}</p> : null}
                     <button>Add</button>
                 </div>
+
             </form>
 
             {/* ***** shopping list ***** */}
+            <h1>My List</h1>
             <table>
                 <thead>
                     <tr>
