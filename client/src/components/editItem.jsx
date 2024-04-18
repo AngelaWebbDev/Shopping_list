@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 const Edititem = () => {
     const {id} = useParams()
@@ -46,6 +46,7 @@ const Edititem = () => {
             <div id='editTitle'>
                 <h3>Edit {name}</h3>
             </div>
+            <Link to='/' className='lookLikeBtn'>Go Back</Link>
 
             <form onSubmit={edititem} id='editForm'>
                 {/* name */}
@@ -101,7 +102,7 @@ const Edititem = () => {
                 {/* edit button*/}
                 <div id='editButtons' >
                     <button>Save</button>
-                    {/* add link to cancel (returns to itemlist.jsx) */}
+                    <Link to='/' className='lookLikeBtn'>Cancel</Link>
                 </div>
             </form>
         </div>

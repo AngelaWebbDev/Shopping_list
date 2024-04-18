@@ -24,7 +24,7 @@ button{
 }
 h1{
   color:whitesmoke;
-  background-color: rgba(2, 54, 2, 0.8);
+  background-color: rgba(0, 0, 0, 0.9);
   padding: 2%;
   font-weight: 500;
   margin: 0;
@@ -75,6 +75,7 @@ thead{
   justify-content:space-evenly;
   margin-bottom:5px;
   border:2px black solid;
+  border-radius: 10px;
 }
 #check{
   padding:2% 0 0 0;
@@ -167,6 +168,18 @@ thead{
   justify-content: left;
   padding-left: 3%;
   word-wrap: normal;
+}
+.lookLikeBtn{
+  border-radius: 5px;
+  background-color: rgb(74, 73, 73);border: 1px solid black;
+  padding: 5px;
+  height:fit-content;
+  width:fit-content;
+  color:whitesmoke;
+}
+.lookLikeBtn:hover{
+  border: 1px white solid;
+  color:whitesmoke;
 }
 .section{
   width:20%;
