@@ -6,9 +6,14 @@
 -----------------------------------------------------------------------------------------
 next
 -----------------------------------------------------------------------------------------
-edititem tr on itemlist.jsx needs a unique key
 
-default sort for item list by section, with dark line between sections (row with all dark backgrounds as top row?)
+th will be buttons that will make the rows be sorted alphabetically (reverse alphabetically if it is alphabetical) by that property (name or section)
+
+media: small screens, checkbox and item top row, next row notes, next row section, next row alternatives
+        ipad, top row checkbox, item, notes, next row section, alternatives
+        laptop leave as is
+        
+edititem tr on itemlist.jsx needs a unique key
 
 ------------------------------------------------------------------------------------------
 future
@@ -17,10 +22,3 @@ future
 allow updating from itemlist (onclick, have update component popup?)
 
 myLIst.jsx: default sort should be by type, then by item alphabetically
-
-shopping/warehouse background, black list background, white lettering,
-centered list, responsive font size
-
-media: small screens, checkbox and item top row, next row notes, next row section, next row alternatives
-        ipad, top row checkbox, item, notes, next row section, alternatives
-        laptop leave as is
