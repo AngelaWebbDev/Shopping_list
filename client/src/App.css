@@ -21,15 +21,21 @@ button{
   padding: 5px;
   height:fit-content;
 }
-form{
-  width:90%;
-  margin-bottom: 3%;
-}
 h1{
   color:black;
   text-shadow: 1px 1px 2px lightgray;
   background-color: rgba(2, 72, 2,0.95);
   padding:2%;
+  border-radius: 10px;
+}
+h3{
+  white-space: nowrap;
+  margin:3%;
+}
+input, textarea{
+  background-color:  black;
+  padding:3%;
+  margin:2%;
   border-radius: 10px;
 }
 p{
@@ -77,6 +83,31 @@ td{
 #edit:hover{
   color:blue;
 }
+#editButtons{
+  display:flex;
+  justify-content: space-around;
+  padding:5%;
+}
+#editForm{
+  margin: 7px;
+  padding:2px 7px 2px 2px;
+  flex:2;
+  display:inline-block;
+  text-align:left;
+  width:100%;
+}
+#EditItemComponentArea{
+  background-color: rgba(2,54,2);
+}
+#editItemPage{
+  padding:7%;
+  border-radius: 10px;
+  display:inline-block;
+  background-color: rgba(2, 54, 2, 0.8);
+}
+#editTitle{
+  flex:1;
+}
 #inputLeft{
   display:flex;
   flex-direction:column;
@@ -95,15 +126,18 @@ td{
   align-items: center;
   padding:0;
 }
-#EditItemComponentArea{
-  background-color: rgba(2,54,2);
-}
 /**********************************************************
                                             CLASSES
 **********************************************************/
 .checkAndEdit{
   width:10%;
   max-width:10%;
+}
+.editInputItem{
+  display:flex;
+  white-space: nowrap;
+  width:max-content;
+  align-items: center;
 }
 .item{
   width:60%;
