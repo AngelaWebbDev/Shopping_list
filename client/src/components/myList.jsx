@@ -1,16 +1,24 @@
-import {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
-const Mylist = (props) => {
-    const {itemlist, setItemlist} = props
+const Mylist = () => {
+
+    const [itemlist, setItemlist] = useState([])
     const [name, setName] = useState('')
     const [section, setSection] = useState('')
     const [notes, setNotes] = useState('')
     const [alternative1, setAlternative1] = useState('')
     const [alternative2, setAlternative2] = useState('')
     const [errors, setErrors] = useState([])
-    const [showEditItem, setshowEditItem] = useState(true)
+    const navigate = useNavigate()
+
+    
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/getAll')
+            .then(res => { setItemlist(res.data) })
+            .catch(err => console.log('appjsx getAll err: ', err))
+    }, [])
 
     const addNewItem = (e) => {
         e.preventDefault();
@@ -30,7 +38,7 @@ const Mylist = (props) => {
                     setSection('');
                     setNotes('');
                     setAlternative1('');
-                    setAlternative2('');
+                    setAlternative2('')
                     setErrors([]);
                     document.getElementById('nameInput').focus();
                 })
@@ -40,17 +48,18 @@ const Mylist = (props) => {
         
     }
 
-    const showEditItemComponent = (e) => {
-        if(showEditItem == false){setshowEditItem(true)}
-        else{setshowEditItem(false)}
-    }
-
     const deleteItem = (id, name) => {
         axios.delete('http://localhost:8000/api/deleteItem/' + id)
             .then(res => {console.log(`${name} was removed from the list.`);
                             setItemlist(itemlist.filter(item => item._id != id));
                             document.getElementById('nameInput').focus();})
             .catch(err => console.log('details deleteItem err: ', err))}
+
+    const goToEdit = (id) => {
+        console.log('mylist gotoedit id: ', id, typeof(id))
+        console.log('/edit/' + id)
+        navigate('/edit/' + id)
+    }
 
     return(
 
@@ -64,7 +73,7 @@ const Mylist = (props) => {
                             id='nameInput'
                             onChange={(e) => setName(e.target.value)} 
                             placeholder='item name'
-                            value={name} 
+                            value={name}
                             autoFocus={true}/>
                     {errors.name ? <p>{errors.name.message}</p> : null}
                     <input type='text'
@@ -140,17 +149,13 @@ const Mylist = (props) => {
                                         : null}
                                 </td>
                                 <td className='section'><p>{item.section}</p></td>
-                                <td className='checkAndEdit'>
-                                    <Link to={`/edit/${item._id}`} id='edit'>&#128393;</Link>
+                                <td>
+                                    <button onClick={() => goToEdit(item._id)}>&#128393;</button>
                                 </td>
+                                {/* <td className='checkAndEdit'>
+                                    <Link to={`/edit/${item._id}`} id='edit'>&#128393;</Link>
+                                </td> */}
                             </tr>
-                            {showEditItem
-                                ?   <tr id='EditItemComponentArea'>
-                                        <td colSpan='4'>
-                                            <p>Show EditItem is true</p>
-                                        </td>
-                                    </tr>
-                                : null}
                             </>
                         )
                     })}
@@ -159,4 +164,4 @@ const Mylist = (props) => {
         </div>
     )
 }
-export default Mylist
+export default Mylist;

@@ -11,7 +11,7 @@ module.exports = (app) => {
     app.get('/api/itemdetails/:id', ItemsController.itemdetails)
 
     //update one by id
-    app.put('/api/updateItem/:id', ItemsController.updateItem)
+    app.put('/api/edit/:id', ItemsController.updateItem)
 
     //delete one by id
     app.delete('/api/deleteItem/:id', ItemsController.deleteItem)

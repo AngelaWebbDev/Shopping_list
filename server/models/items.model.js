@@ -9,6 +9,6 @@ const ItemsSchema = mongoose.Schema({
     notes:{type:String},
     alternative1:{type:String},
     alternative2:{type:String}
-    }, {timestamps:true})
+}, {timestamps:true})
 
 module.exports = mongoose.model('Items', ItemsSchema)

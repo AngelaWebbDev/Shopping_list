@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate, Link, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-const Edititem = (props) => {
-    const { itemlist, setItemlist } = props
-    const {id} = useParams();
+const Edititem = () => {
+    // const { id } = props
+    const {id} = useParams()
     const [name, setName] = useState('')
     const [section, setSection] = useState('')
     const [notes, setNotes] = useState('')
@@ -36,75 +36,71 @@ const Edititem = (props) => {
             alternative2
         }
 
-        axios.put('http://localhost:8000/api/updateItem/' + id, updatedItem)
-            .then(res => {
-                    setName('');
-                    setSection('');
-                    setNotes('');
-                    setAlternative1('');
-                    setAlternative2('');
-                    navigate('/')})
-            .catch(err => {console.log('updateitem updateOneById err: ', err);
+        axios.put('http://localhost:8000/api/edit/'+id, updatedItem)
+            .then(res => navigate('/'))
+            .catch(err => {console.log('edititem updateitem err: ', err);
                             setErrors(err.response.data.errors)})
     }
 
     return (
-        <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignContent: 'center' }}>
-                <h1>Edit</h1>
-                <Link to={`/`}>back to list</Link>
+        <div id='editItemPage'>
+            <div id='editTitle'>
+                <h3>Edit {name}</h3>
             </div>
-            <p>Edit {name}</p>
-            <form onSubmit={edititem} style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-                <div>
-                    <div style={{ margin: '5px' }}>
-                        <label>Name:</label>
-                        <input type='text'
-                            onChange={(e) => setName(e.target.value)}
-                            value={name} />
-                        {errors.name ? <p>{errors.name.message}</p> : null}
-                    </div>
-
-                    <div style={{ margin: '5px' }}>
-                        <label>Section:</label>
-                        <input type='text'
-                            onChange={(e) => setSection(e.target.value)}
-                            value={section} />
-                        {errors.section ? <p>{errors.section.message}</p> : null}
-                    </div>
-
-                    <div style={{ margin: '5px' }}>
-                        <label>Notes:</label>
-                        <input type='text'
-                            onChange={(e) => setNotes(e.target.value)}
-                            value={notes} />
-                        {errors.notes ? <p>{errors.notes.message}</p> : null}
-                    </div>
-                    <button style={{ border: '1px solid blue', margin: '3px', padding: '5px', borderRadius: '2px' }}>Save</button>
-                    {/* add link to cancel (returns to itemlist.jsx) */}
+            <form onSubmit={edititem} id='editForm'>
+                <div className='editInputItem'>
+                    <label>Name: </label>
+                    <input type='text'
+                        onChange={(e) => setName(e.target.value)}
+                        value={name}
+                        autoFocus={true} />
+                    {errors.name ? <p>{errors.name.message}</p> : null}<br/>
                 </div>
-                <div>
-                    <div style={{ margin: '5px' }}>
-                        <label>Alternative 1:</label>
-                        <input type='text'
-                            onChange={(e) => setAlternative1(e.target.value)}
-                            value={alternative1} />
-                        {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
-                    </div>
-
-                    <div style={{ margin: '5px' }}>
-                        <label>Alternative 2:</label>
-                        <input type='text'
-                            onChange={(e) => setAlternative2(e.target.value)}
-                            value={alternative2} />
-                        {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}
-                    </div>
-
+                <div className='editInputItem'>
                     
+                    
+                    <label>Section: </label>
+                    <input type='text'
+                        onChange={(e) => setSection(e.target.value)}
+                        value={section} /><br/>
+                    {errors.section ? <p>{errors.section.message}</p> : null}
                 </div>
 
+                <div className='editInputItem'>
+                    <label>Notes: </label>
+                    <textarea rows='5'
+                                cols='20' 
+                                maxLength='100'
+                                onChange={e => setNotes(e.target.value)} 
+                                value={notes}  />
+                    {errors.notes ? <p>{errors.notes.message}</p> : null}
+                </div>
+                    
+                <div className='editInputItem'>
+                    <label>Alternative 1: </label>
+                    <input type='text'
+                        onChange={(e) => setAlternative1(e.target.value)}
+                        value={alternative1} />
+                    {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
+                </div>
+                    
+                {alternative1.length>1
+                    ?   <div className='editInputItem'>
+                            <label>Alternative 2: </label>
+                            <input type='text'
+                                onChange={(e) => setAlternative2(e.target.value)}
+                                value={alternative2} />
+                            {errors.alternative2 ? <p>{errors.alternative2.message}</p> : null}
+                        </div>
+                    : null}
+
+                    <div id='editButtons' >
+                        <button>Save</button>
+                        {/* add link to cancel (returns to itemlist.jsx) */}
+                    </div>
+                
             </form>
-        </>
+        </div>
     )
 }
 export default Edititem;
