@@ -63,7 +63,7 @@ const Mylist = () => {
 
             {/* ***** add item ***** */}
             <form onSubmit={addNewItem} id='addItemForm'>
-                <div class='addItemHalf'> {/* left side */}
+                <div className='addItemHalf'> {/* left side */}
                     {/* name */}
                     <input section='text' 
                             id='nameInput'
