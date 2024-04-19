@@ -1,11 +1,14 @@
 ----------------------------------------------------------------------------------------
 **** URGENT ****
 ----------------------------------------------------------------------------------------
+validations for additem not working
 
 
 -----------------------------------------------------------------------------------------
 next
 -----------------------------------------------------------------------------------------
+
+save and cancel buttons on edititem.jsx are different sizes
 
 th will be buttons that will make the rows be sorted alphabetically (reverse alphabetically if it is alphabetical) by that property (name or section)
 
