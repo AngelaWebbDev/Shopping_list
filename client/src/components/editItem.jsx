@@ -46,10 +46,10 @@ const Edititem = () => {
 
     return (
         <div id='editItemPage'>
+            <Link to='/' className='lookLikeBtn' id='gobackBtn'>Go Back</Link>
             <div id='editTitle'>
                 <h3>Edit {oldName}</h3>
             </div>
-            <Link to='/' className='lookLikeBtn'>Go Back</Link>
 
             <form onSubmit={edititem} id='editForm'>
                 {/* name */}
@@ -108,8 +108,8 @@ const Edititem = () => {
 
                 {/* edit button*/}
                 <div id='editButtons' >
-                    <button>Save</button>
                     <Link to='/' className='lookLikeBtn'>Cancel</Link>
+                    <button>Save</button>
                 </div>
             </form>
         </div>
