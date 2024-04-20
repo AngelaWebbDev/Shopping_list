@@ -3,9 +3,9 @@ const Items = require('../models/items.model')
 module.exports = {
     
     newitem: (req, res) => {
-                Items.create(req.body, { new: true, runValidators: true })
-                            .then(newdoc => res.status(201).json(newdoc))
-                            .catch(err => res.status(500).json(err))
+                Items.create(req.body)
+                        .then(newdoc => res.status(201).json(newdoc))
+                        .catch(err => res.status(500).json(err))
     },
 
     getAll: (req, res) => {
