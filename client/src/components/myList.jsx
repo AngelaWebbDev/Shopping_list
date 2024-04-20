@@ -28,6 +28,8 @@ const Mylist = () => {
             alternative1,
             alternative2
         }
+
+        console.log('mylist newitem = ', newItem)
     
         axios.post('http://localhost:8000/api/newitem', newItem)
             .then(res => {
@@ -83,10 +85,11 @@ const Mylist = () => {
                     {errors.section ? <p>{errors.section.message}</p> : null}
                     
                     {/* alternative 1 */}
-                    <input type='text' className='addItemArea'
+                    <input type='text' 
+                            className='addItemArea'
                             onChange={(e) => setAlternative1(e.target.value)}
-                            value={alternative1} 
-                            placeholder='alternative choice #1'/>
+                            placeholder='alternative choice #1'
+                            value={alternative1} />
                     {errors.alternative1 ? <p>{errors.alternative1.message}</p> : null}
 
                     {/* alternative 2 */}
