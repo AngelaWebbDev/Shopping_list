@@ -14,37 +14,33 @@ const Mylist = () => {
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/getAll')
-            .then(res => { setItemlist(res.data) })
+            .then(res => setItemlist(res.data))
             .catch(err => console.log('appjsx getAll err: ', err))
     }, [])
 
     const addNewItem = (e) => {
         e.preventDefault();
             
-        const newItem = {
-            name,
-            section,
-            notes,
-            alternative1,
-            alternative2
+        const newItem = { 
+                        name,
+                        section,
+                        notes,
+                        alternative1,
+                        alternative2
         }
-
-        console.log('mylist newitem = ', newItem)
     
         axios.post('http://localhost:8000/api/newitem', newItem)
-            .then(res => {
-                setItemlist([...itemlist, res.data]);
-                setName('');
-                setSection('');
-                setNotes('');
-                setAlternative1('');
-                setAlternative2('')
-                setErrors([]);
-                document.getElementById('nameInput').focus();
-            })
+            .then(res => { setItemlist([...itemlist, res.data]);
+                            setName('');
+                            setSection('');
+                            setNotes('');
+                            setAlternative1('');
+                            setAlternative2('');
+                            setErrors([]);
+                            document.getElementById('nameInput').focus();})
             .catch(err => {
                 console.log('additem newitem err: ', err);
-                setErrors(err.response.data.errors);})
+                setErrors(err.response.data.errors)})
     }
 
     const deleteItem = (id, name) => {
